@@ -4,7 +4,7 @@ class Token:
 
     def __repr__(self):
         return "{}({})".format(
-            str(self.__class__).split("'")[1].split(".")[-1],
+            self.__class__.__name__,
             repr(self.val)
         )
 

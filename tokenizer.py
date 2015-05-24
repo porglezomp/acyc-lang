@@ -6,15 +6,22 @@ class TokenBuffer:
     def __init__(self, tokens):
         self.next = next(tokens)
         self.tokens = tokens
+        self.previous_line = self.next.line
 
     def advance(self):
         try:
+            self.previous_line = self.next.line
             self.next = next(self.tokens)
         except StopIteration:
             self.next = None
 
+    def on_new_line(self):
+        return (self.next.line != self.previous_line)
+
     def peek(self):
         return self.next
+
+
 
     def consume(self, item):
         expect(self.next, item)
