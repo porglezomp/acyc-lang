@@ -1,0 +1,25 @@
+# Lexer
+upname := [A-Z][_A-Za-z0-9]*
+name := [_a-z][_A-Za-z0-9]*
+number := [0-9]+(.[0-9]*)?
+string := ".*?" | '.*?'
+
+# Parser
+ROOT := (defn | data)*
+data := 'data' <upname> ('(' <name> ( ',' <name> )+ ')' )? '=' type ( '|' type )+
+type := <upname> ( '(' (<name> | type) ( ',' (<name> | type) )+ ')' )?
+defn := <name> pattern? '=' expr
+expr := letexpr
+      | matchexpr
+      | ifexpr
+      | opexpr
+letexpr := 'let' defn ( ';' defn )+ 'in' expr
+matchexpr := 'match' pattern 'for' ('case' pattern ('if' expr)? '=' expr)*
+ifexpr := 'if' expr 'then' expr 'else' expr
+opexpr := <PRATT PARSING>
+pattern := litpattern
+         | '(' pattern ( ',' pattern )* ')'
+         | upname '(' pattern ')'
+litpattern := name | number | string
+
+# Pratt Parsing
