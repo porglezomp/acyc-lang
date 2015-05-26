@@ -3,6 +3,9 @@
 
 main () = fib2 400
 
+# fib3 0 = 0
+# fib3 1 = 1
+# fib3 n = fib3(n - 1) + fib3(n - 2)
 fib2 n = fibhelper(n, 0, 1)
 fibhelper (n, a, b) = if n == 0 then a
                       else if n == 1 then b

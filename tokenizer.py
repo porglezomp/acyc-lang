@@ -91,7 +91,7 @@ def tokenize(string):
             continue
         # Capture identifiers
         # name := [_a-z][_A-Za-z0-9]
-        elif buf.peek().isalpha() or buf.peek() == "_":
+        elif buf.peek().isalpha():
             pos = buf.line, buf.col
             result = ""
             while isident(buf.peek()):

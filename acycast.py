@@ -165,7 +165,8 @@ class TupleAST (AST):
     def __init__(self, items):
         self.items = items
 
-class UnitAST (AST): pass
+class UnitAST (AST):
+    def __init__(self): pass
 
 TypeAST = namedtuple('TypeAST', 'name, type_constructor, constructors')
 ConstructorAST = namedtuple('ConstructorAST', 'name, items')
