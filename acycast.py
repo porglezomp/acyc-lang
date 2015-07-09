@@ -141,7 +141,7 @@ CondPatternAST = namedtuple('CondPatternAST', 'cond')
 
 class LitPatternAST (PatternAST):
     def __init__(self, val):
-        super().__init__(val)
+        PatternAST.__init__(self, val)
         self.val = val
 
 DataPatternAST = namedtuple('TypePatternAST', 'name, items')
