@@ -1,4 +1,5 @@
 # Acyc
+[![Build status](https://travis-ci.org/porglezomp/acyc-lang.svg?branch=master)](https://travis-ci.org/porglezomp/acyc-lang)
 An experimental reference counted strict functional language
 
 ## Dependencies
