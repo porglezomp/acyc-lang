@@ -21,8 +21,6 @@ class TokenBuffer:
     def peek(self):
         return self.next
 
-
-
     def consume(self, item):
         expect(self.next, item)
         self.advance()
