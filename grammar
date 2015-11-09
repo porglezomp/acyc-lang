@@ -1,7 +1,13 @@
 # Lexer
 upname := [A-Z][_A-Za-z0-9]*
 name := [_a-z][_A-Za-z0-9]*
-number := [0-9]+(.[0-9]*)?
+number := <integer>(.<integer>?)?<expt>?
+integer := (0x<hex>|(0d)?<dec>|0o<oct>|0b<bin>)
+hex := [0-9A-Fa-f]+
+dec := [0-9]+
+oct := [0-7]+
+bin := [01]+
+expt := ([eEpP][+-]?<integer>)
 string := ".*?" | '.*?'
 
 # Parser

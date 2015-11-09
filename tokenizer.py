@@ -1,5 +1,7 @@
 from acyctokens import Num, Ident, Op, Char, String, Keyword, EOF
 from acycexceptions import *
+from decimal import *
+getcontext().prec = 64
 
 
 class TokenBuffer:
@@ -103,7 +105,7 @@ def tokenize(string):
             else:
                 yield Ident(result, *pos)
         # Capture numbers
-        # number := [0-9]+(.[0-9]*)?
+        # number := (0(x|o|b))?[0-9]+(.[0-9]*)?
         elif buf.peek().isdigit():
             pos = buf.line, buf.col
             result = ""
@@ -117,7 +119,7 @@ def tokenize(string):
                     result += buf.peek()
                     buf.advance()
 
-            yield Num(float(result), *pos)
+            yield Num(Decimal(result), *pos)
         # Capture operators
         elif isop(buf.peek()):
             pos = buf.line, buf.col
